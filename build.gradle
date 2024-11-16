@@ -20,6 +20,16 @@ application {
     mainClass = 'FishingRNG'
 }
 
+tasks {
+    jar {
+        manifest {
+            attributes(
+                'Main-Class': 'org.example.FishingRNG'  // 実行クラスを指定
+            )
+        }
+    }
+}
+
 tasks.test {
     useJUnitPlatform()
 }
