@@ -35,6 +35,7 @@ tasks.register('fatJar', Jar) {
 }
 
 jar {
+    archiveBaseName.set('fishingRNG-all')
     manifest {
         attributes(
             'Main-Class': 'org.example.FishingRNG'
@@ -44,4 +45,3 @@ jar {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
-
