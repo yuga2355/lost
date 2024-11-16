@@ -33,3 +33,15 @@ tasks.register('fatJar', Jar) {
     }
     with tasks.jar.get()
 }
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'org.example.FishingRNG'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
