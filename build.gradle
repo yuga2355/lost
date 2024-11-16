@@ -17,10 +17,19 @@ dependencies {
 }
 
 application {
-    // FishingRNG.java の完全修飾名
     mainClass = 'FishingRNG'
 }
 
 tasks.test {
     useJUnitPlatform()
+}
+
+tasks.register('fatJar', Jar) {
+    archiveBaseName.set('fishingRNG-all')
+    from sourceSets.main.output
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    with tasks.jar.get()
 }
